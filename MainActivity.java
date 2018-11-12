@@ -43,7 +43,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        Intent intent = getIntent();
+      /*  Intent intent = getIntent();
         callerId = intent.getStringExtra("callerId");
         recipientId = intent.getStringExtra("recipientId");
 
@@ -60,23 +60,28 @@ public class MainActivity extends AppCompatActivity {
         sinchClient.start();
 
         sinchClient.getCallClient().addCallClientListener(new SinchCallClientListener());
-
+*/
         button = (Button) findViewById(R.id.button);
-        callState = (TextView) findViewById(R.id.callState);
+        //callState = (TextView) findViewById(R.id.callState);
 
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (call == null) {
+                startService(new Intent(MainActivity.this,MyService.class));
+
+              /*  if (call == null) {
                     call = sinchClient.getCallClient().callUser(recipientId);
                     call.addCallListener(new SinchCallListener());
                     button.setText("Hang Up");
                 } else {
                     call.hangup();
-                }
+                }*/
             }
         });
     }
+
+
+
     private class SinchCallListener implements CallListener {
         @Override
         public void onCallEnded(Call endedCall) {
